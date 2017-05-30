@@ -12,5 +12,6 @@
     <module>shop_base</module>
     <module>shop_client</module>
     <module>shop_mvc</module>
+    <module>shop_hibernate</module>
   </modules>
 </project>
