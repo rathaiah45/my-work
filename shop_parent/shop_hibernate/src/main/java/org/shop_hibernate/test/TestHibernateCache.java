@@ -1,5 +1,7 @@
 package org.shop_hibernate.test;
 
+import java.io.File;
+
 import org.hibernate.Session;
 import org.hibernate.cfg.AnnotationConfiguration;
 import org.shop_hibernate.form.Commerce;
@@ -10,7 +12,7 @@ public class TestHibernateCache {
 		store();
 		try {
 			Session session = new AnnotationConfiguration()
-					.configure("hibernate.cfg.xml").buildSessionFactory()
+					.configure("/resources/hibernate.cfg.xml").buildSessionFactory()
 					.openSession();/*
 									 * HibernateUtil.getSessionFactory().openSession
 									 * ();
