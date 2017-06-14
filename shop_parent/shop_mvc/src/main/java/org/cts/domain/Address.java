@@ -5,7 +5,6 @@ import java.io.Serializable;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -13,15 +12,16 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
-
-import org.springframework.stereotype.Component;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name = "ADDRESS_INFORMATION")
 public class Address implements Serializable {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO, generator = "employee_seq")
-	@SequenceGenerator(name = "employee_seq", sequenceName = "employee_sequence")
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	// , generator = "employee_seq")
+	// @SequenceGenerator(name = "employee_seq", sequenceName =
+	// "employee_sequence")
 	@Column(name = "ADDRESS_ID")
 	private Integer address_id;
 	@Column(name = "HOUSE_NO")
@@ -32,14 +32,16 @@ public class Address implements Serializable {
 	private String city;
 	@Column(name = "PINCODE")
 	private Integer pincode;
+
 	/*
 	 * @ManyToOne()
 	 * 
-	 * @JoinColumn(name = "EMPLOYEE_ID")
+	 * @JoinColumn(name = "EMPLOYEE_ID") //
 	 */
-	@ManyToOne()
-	@JoinColumn(name = "EMPLOYEE_ID")
-	private Employee employee;
+	// @ManyToOne()
+	// @JoinColumn(name = "EMPLOYEE_ID")
+	// @Transient
+	// private Employee employee;
 
 	public Integer getAddress_id() {
 		return address_id;
@@ -81,27 +83,24 @@ public class Address implements Serializable {
 		this.pincode = pincode;
 	}
 
-	public Employee getEmployee() {
-		return employee;
-	}
-
-	public void setEmployee(Employee employee) {
-		this.employee = employee;
-	}
-
+	/*
+	 * public Employee getEmployee() { return employee; }
+	 * 
+	 * public void setEmployee(Employee employee) { this.employee = employee; }
+	 */
 	public Address() {
 
 	}
 
 	public Address(Integer address_id, String house_no, String street,
-			String city, Integer pincode, Employee employee) {
+			String city, Integer pincode) {
 		super();
 		this.address_id = address_id;
 		this.house_no = house_no;
 		this.street = street;
 		this.city = city;
 		this.pincode = pincode;
-		this.employee = employee;
+		
 	}
 
 }

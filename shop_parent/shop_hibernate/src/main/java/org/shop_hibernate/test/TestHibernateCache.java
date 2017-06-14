@@ -1,18 +1,17 @@
 package org.shop_hibernate.test;
 
-import java.io.File;
-
 import org.hibernate.Session;
 import org.hibernate.cfg.AnnotationConfiguration;
 import org.shop_hibernate.form.Commerce;
 
+@SuppressWarnings("deprecation")
 public class TestHibernateCache {
 
 	public static void main(String[] args) {
 		store();
 		try {
 			Session session = new AnnotationConfiguration()
-					.configure("/resources/hibernate.cfg.xml").buildSessionFactory()
+					.configure().buildSessionFactory()
 					.openSession();/*
 									 * HibernateUtil.getSessionFactory().openSession
 									 * ();

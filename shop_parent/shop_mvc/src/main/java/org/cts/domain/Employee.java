@@ -3,7 +3,6 @@ package org.cts.domain;
 import java.io.Serializable;
 import java.sql.Date;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -19,9 +18,11 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "EMPLOYEE_INFORMATION")
 public class Employee implements Serializable {
+	
+	private static final long serialVersionUID = 1L;
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO, generator = "employee_seq")
-	@SequenceGenerator(name = "employee_seq", sequenceName = "employee_sequnce")
+	@GeneratedValue(strategy = GenerationType.AUTO)//, generator = "employee_seq")
+	//@SequenceGenerator(name = "employee_seq", sequenceName = "employee_sequnce")
 	@Column(name = "EMPLOYEE_ID")
 	private Integer employee_id;
 	@Column(name = "FIRST_NAME")
@@ -34,7 +35,7 @@ public class Employee implements Serializable {
 	private String email;
 	@Column(name = "MOBILE_NUMBER")
 	private Integer mobile_number;
-	@OneToMany(mappedBy = "employee",cascade=CascadeType.ALL)
+	@OneToMany(cascade=CascadeType.ALL)
 	//@Column(name = "ADDRESS_ID")
 	private List<Address> address = new ArrayList<Address>();
 
