@@ -11,7 +11,7 @@
         http://www.springframework.org/schema/context/spring-context.xsd">
         
 	<mvc:annotation-driven />
-	<!-- <mvc:resources mapping="/resources/*" location="/resources/" /> -->
+	<mvc:resources mapping="/resources/**" location="/resources/" />
 	<bean id="mailProperties"
 		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
 		<property name="location" value="classpath:application_dev.properties" />
@@ -32,10 +32,10 @@
 		name="username" value="root" /> <property name="password" value="secret" 
 		/> </bean> -->
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
-		<property name="driverClassName" value="${mysql.database.driverName}"></property>
-		<property name="url" value="${mysql.database.url}"></property>
-		<property name="username" value="${mysql.database.username}"></property>
-		<property name="password" value="${mysql.database.password}"></property>
+		<property name="driverClassName" value="${oracle.database.driverName}"></property>
+		<property name="url" value="${oracle.database.url}"></property>
+		<property name="username" value="${oracle.database.username}"></property>
+		<property name="password" value="${oracle.database.password}"></property>
 	</bean>
 	<bean id="sessionFactory"
 		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
