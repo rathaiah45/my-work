@@ -1,44 +1,49 @@
 <html>
+<script>
+	var request;
+	function sendInfo() {
+		var v = document.fname.id.value;
+		var url = "./person.jsp?val=" + v;
+		if (window.XMLHttpRequest) {
+			request = new XMLHttpRequest();
+		} else if (window.ActiveXObject) {
+			request = new ActiveXObject("Microsoft.XMLHTTP");
+		}
+		try {
+			request.onreadystatechange = getInfo;
+			request.open("GET", url, true);
+			request.send();
+		} catch (e) {
+			alert("Unable to connect to server");
+		}
+	}
+	function getInfo() {
+		if (request.readyState == 4) {
+			var val = request.responseText;
+			document.getElementById('amit').innerHTML = val;
+		}
+	}
+</script>
 <body>
 	<h2>Hello World!</h2>
 
-	<form action="./home/save-data" method="post">
+	<form action="./home/save-person" method="post" name="person">
 		<table>
 			<tr>
-				<td>FirstName</td>
-				<td><input type="text" name="first_name" /></td>
+				<td>FULLANME</td>
+				<td><input type="text" name="full_name" /></td>
 			</tr>
 			<tr>
-				<td>LastName</td>
-				<td><input type="text" name="last_name" /></td>
-			</tr>
-			<tr>
-				<td>JoiningDate</td>
-				<td><input type="date" name="joining_date" /></td>
-			</tr>
-			<tr>
-				<td>Email</td>
+				<td>EMAIL</td>
 				<td><input type="text" name="email" /></td>
 			</tr>
 			<tr>
-				<td>MobileNumber</td>
-				<td><input type="number" name="mobile_number" /></td>
+				<td>USERNAME</td>
+				<td><input type="text" name="username" /></td>
 			</tr>
 			<tr>
-				<td>HouseNo</td>
-				<td><input type="text" name="house_no" /></td>
-			</tr>
-			<tr>
-				<td>Street</td>
-				<td><input type="text" name="street" /></td>
-			</tr>
-			<tr>
-				<td>City</td>
-				<td><input type="text" name="city" /></td>
-			</tr>
-			<tr>
-				<td>Pincode</td>
-				<td><input type="number" name="pincode" /></td>
+				<td>PASSWORD</td>
+				<td><input type="password" name="password" /></td>
 			</tr>
 			<tr>
 				<td><input type="submit" value="Submit" /></td>
@@ -46,5 +51,11 @@
 			</tr>
 		</table>
 	</form>
+	<form action="" name="fname">
+		<input type="text" name="id" />
+	</form>
+	<input type="button" value="ShowTable" onClick="sendInfo()">
+	<span id="amit"> </span>
+	<a href="./home/login">login</a>
 </body>
 </html>
